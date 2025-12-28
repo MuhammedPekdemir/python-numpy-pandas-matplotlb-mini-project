@@ -7,6 +7,7 @@ AylikSatis = np.random.randint(1200, 3600, 30)
 Kategoriler = np.random.choice(['Elektronik', 'Gıda', 'Giyim'], 30)
 
 df = pd.DataFrame({ 'Gun': Gunler,'SatisFiyat': AylikSatis,'Kategori': Kategoriler})
+print(df)
 
 KategoriSatis = df.groupby('Kategori')['SatisFiyat'].sum()
 
@@ -19,6 +20,11 @@ def Performans(SatisFiyat):
         return "Dusuk Kalite"
 
 df["Urun Kategorisi"] = df["SatisFiyat"].apply(Performans)
+
+df_performans = pd.DataFrame(df["Urun Kategorisi"])
+print("")
+print(df_performans)
+
 df["7 Gunluk Ortalama"] = df["SatisFiyat"].rolling(window=7).mean()
 
 plt.figure(figsize=(14, 5))
